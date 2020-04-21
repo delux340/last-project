@@ -1,0 +1,18 @@
+<div class="signFormStyle" align="center">
+    <h1>Sign Up</h1>
+    <div class="container">
+        <form>
+            <div [formGroup]="signUpFrom" class="form-group">
+                <label>id</label>
+                <input formControlName="id" type="number" class="form-control" id="exampleInputPassword1">
+                <label>Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1">
+                <label>Password</label>
+                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                <label>Confirm Password</label>
+                <input formControlName="confirmPassword" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button (click)="nextStep()" type="button" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

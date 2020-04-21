@@ -1,0 +1,6 @@
+<div class="signFormStyle" align="center">
+    <div class="container">
+        <app-first-sign-up-form (chooseStep)="chooseStep($event)" *ngIf="step == 'one'"></app-first-sign-up-form>
+        <app-second-sign-up-form (chooseStep)="chooseStep($event)" *ngIf="step == 'two'"></app-second-sign-up-form>
+    </div>
+</div>
