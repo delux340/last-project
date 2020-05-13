@@ -24,6 +24,15 @@ const productSchema = new mongoose.Schema({
         required: true
     }
 })
+productSchema.statics.getProducts = function () {
+    return this.find({});
+}
+
+
+
 const productsModel = mongoose.model("products", productSchema)
 
-module.exports = productsModel
+
+
+module.exports = productsModel 
+

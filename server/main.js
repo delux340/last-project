@@ -6,7 +6,9 @@ const usersRouter = require("./routes/users")
 const dbConnection = require("./db/db")
 const verifyToken = require("./utills/tokenValidation")
 const verifyRouter = require("./routes/verify")
-const { seed } = require("./utills/products")
+const productsRouter = require("./routes/products")
+// const { seed } = require("./utills/products")
+
 require("dotenv").config()
 
 const { PORT } = process.env
@@ -19,5 +21,6 @@ app.use(bodyParser.json())
 dbConnection()
 
 app.use("/users", usersRouter)
-// app.use("/verify", verifyRouter)
-//app.use(verifyToken)
+app.use("/verify", verifyRouter)
+// app.use(verifyToken)
+app.use("/products", productsRouter)

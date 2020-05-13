@@ -9,7 +9,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { HttpClientModule } from "@angular/common/http";
 import { FirstSignUpFormComponent } from './components/first-sign-up-form/first-sign-up-form.component';
 import { SecondSignUpFormComponent } from './components/second-sign-up-form/second-sign-up-form.component';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductItemComponent } from './components/product-item/product-item.component'
 
 
 
@@ -21,7 +23,9 @@ import { HomeComponent } from './components/home/home.component'
     NavbarComponent,
     FirstSignUpFormComponent,
     SecondSignUpFormComponent,
-    HomeComponent
+    HomeComponent,
+    ProductsListComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

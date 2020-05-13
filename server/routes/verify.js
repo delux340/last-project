@@ -1,6 +1,6 @@
 const router = require("express").Router()
-// const { verifyToken } = require("../controllers/verify")
+const verifyToken = require("../controllers/verify")
 
-router.get("/")
+router.get("/", verifyToken)
 
 module.exports = router

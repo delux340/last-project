@@ -1,7 +1,8 @@
 const usersModel = require("../schemas/users")
 const bcrypt = require("bcrypt")
-const getToken = require("../utills/jwt")
 const salt = bcrypt.genSaltSync(10)
+const getToken = require("../utills/jwt")
+
 
 async function handleUserRegister(user) {
     const { email } = user

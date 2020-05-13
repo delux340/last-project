@@ -7,7 +7,7 @@ const arrayOfInjects = ["signIn", "signUp"]
 @Injectable()
 export class CustomInterceptorService implements HttpInterceptor {
   constructor() { }
- 
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const newRequest = request.clone(handleClone(request.url))
     function handleClone(url) {
@@ -16,10 +16,10 @@ export class CustomInterceptorService implements HttpInterceptor {
       const token = localStorage.getItem("token") || ""
       return { setHeaders: { autorization: token } }
     }
-    
+
     return next.handle(newRequest).pipe(map(event => {
       if (event instanceof HttpResponse) {
-        if (event.body.status === false) localStorage.setItem("token", "")
+        if (event.body.isError) localStorage.setItem("token", "")
       }
       return event;
     }))

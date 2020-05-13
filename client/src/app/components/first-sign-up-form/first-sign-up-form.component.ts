@@ -8,6 +8,7 @@ import { UsersService } from "../../services/users/users.service"
   templateUrl: './first-sign-up-form.component.html',
   styleUrls: ['./first-sign-up-form.component.css']
 })
+
 export class FirstSignUpFormComponent implements OnInit {
   @Output() chooseStep = new EventEmitter()
   signUpFrom
