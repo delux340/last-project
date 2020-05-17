@@ -1,9 +1,8 @@
-<div>
-<span>{{product.category}}</span>
-<span>{{product.description}}</span>
-<img width="150px" src= {{product.image}}/>
-<span>{{product.price}}</span>
-<span>{{product.title}}</span>
+<div class="productCard">
+    <p><b>{{product.title}}</b></p>
+    <img width="150px" src={{product.image}} />
+    <p>price : {{product.price}}</p>
+    <div style="position: relative; bottom: 0">
+        <p>{{product.description}}</p>
+    </div>
 </div>
-
-

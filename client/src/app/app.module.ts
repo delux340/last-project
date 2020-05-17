@@ -11,7 +11,9 @@ import { FirstSignUpFormComponent } from './components/first-sign-up-form/first-
 import { SecondSignUpFormComponent } from './components/second-sign-up-form/second-sign-up-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
-import { ProductItemComponent } from './components/product-item/product-item.component'
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { CategoryComponent } from './components/category/category.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component'
 
 
 
@@ -25,7 +27,9 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     SecondSignUpFormComponent,
     HomeComponent,
     ProductsListComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    CategoryComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

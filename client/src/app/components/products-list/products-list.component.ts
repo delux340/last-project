@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ProductsServiceService } from "../../services/productsService/products-service.service"
 
 @Component({
@@ -6,17 +6,18 @@ import { ProductsServiceService } from "../../services/productsService/products-
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
-  arrayOfProducts: Array<any>
+export class ProductsListComponent implements OnInit, OnChanges {
+  @Input() products
+  selectedCategory: String
+  filterdArray: Array<any>
   constructor(public productsService: ProductsServiceService) {
-    this.arrayOfProducts = []
+    this.selectedCategory = this.productsService.getSelectedCategory()
   }
 
   ngOnInit() {
-    this.productsService.getAllProducts().subscribe((res) => {
-      console.log(res)
-      this.arrayOfProducts = res
-    })
+    this.filterdArray = this.products.filter((itr) => itr.category.toLowerCase() === this.selectedCategory.toLowerCase())
   }
-
+  ngOnChanges() {
+    this.filterdArray = this.products.filter((itr) => itr.category.toLowerCase() === this.selectedCategory.toLowerCase())
+  }
 }

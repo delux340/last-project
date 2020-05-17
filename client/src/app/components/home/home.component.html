@@ -1,8 +1,14 @@
 <div>
-    <div>
+    <div style="text-align: center;">
         <h1>Home</h1>
     </div>
     <div>
-        <app-products-list></app-products-list>
+        <app-shopping-cart></app-shopping-cart>
+    </div>
+    <div>
+        <app-category [products]="products"></app-category>
+    </div>
+    <div>
+        <app-products-list [products]="products"></app-products-list>
     </div>
 </div>
