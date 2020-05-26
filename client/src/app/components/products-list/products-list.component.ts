@@ -1,23 +1,21 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ProductsServiceService } from "../../services/productsService/products-service.service"
+import { Component, OnInit } from '@angular/core';
+import { ProductsStateService } from "../../services/products-state/products-state.service"
+import { SearchService } from "../../services/search-service/search.service"
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit, OnChanges {
-  @Input() products
-  selectedCategory: String
+export class ProductsListComponent implements OnInit {
   filterdArray: Array<any>
-  constructor(public productsService: ProductsServiceService) {
-    this.selectedCategory = this.productsService.getSelectedCategory()
+  searchInput: String
+  constructor(public searchService: SearchService, public productsStateService: ProductsStateService) {
   }
 
   ngOnInit() {
-    this.filterdArray = this.products.filter((itr) => itr.category.toLowerCase() === this.selectedCategory.toLowerCase())
-  }
-  ngOnChanges() {
-    this.filterdArray = this.products.filter((itr) => itr.category.toLowerCase() === this.selectedCategory.toLowerCase())
+    this.productsStateService.filterArray()
+    this.productsStateService.filterdCategoryArray$.subscribe((products) => this.filterdArray = products)
+    this.searchService.search$.subscribe((input) => { this.searchInput = input })
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product } from 'src/app/models/product';
+import { Product } from 'src/app/interfaces/product';
 import { ProductsServiceService } from '../productsService/products-service.service';
 
 
@@ -9,25 +9,49 @@ import { ProductsServiceService } from '../productsService/products-service.serv
 })
 export class ProductsStateService {
 
-  private readonly productsSubject: BehaviorSubject<Product[]> = 
-  new BehaviorSubject<Product[]>([]);
-
+  private readonly productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   public products$: Observable<Product[]> = this.productsSubject.asObservable();
 
+  private readonly categoryArraySubject: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public categories$: Observable<Product[]> = this.categoryArraySubject.asObservable();
 
-  constructor(private productsService: ProductsServiceService) {
-  }
+  private readonly filterdCategorySubject: BehaviorSubject<any> = new BehaviorSubject<any>("Fruits");
+  public filterdCategory$: Observable<Product[]> = this.filterdCategorySubject.asObservable();
+
+  private readonly filterdArraySubject: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public filterdCategoryArray$: Observable<Product[]> = this.filterdArraySubject.asObservable();
+
+  constructor(private productsService: ProductsServiceService) { }
 
 
   getProducts() {
     this.productsService.getAllProducts()
       .then(products => {
-          this.productsSubject.next(products);
+        this.productsSubject.next(products);
       })
       .catch(err => {
         console.error(err);
       })
   }
+  handleProducts() {
+    this.products$.subscribe((data) => {
+      const categoryArray = this.productsService.handleProducts(data)
+      this.categoryArraySubject.next(categoryArray)
+    })
+  }
+  filterArray() {
+    this.filterdCategory$.subscribe(() => {
+      this.products$.subscribe((products) => {
+        const filterdArray = products.filter((itr) => itr.category === this.filterdCategorySubject.getValue())
+        this.filterdArraySubject.next(filterdArray)
+      })
+    })
+  }
+
+  setCategory(category) {
+    this.filterdCategorySubject.next(category)
+  }
+
 
   // remove(productToRemove: Product) {
   //   this.productsService.delete(productToRemove._id)

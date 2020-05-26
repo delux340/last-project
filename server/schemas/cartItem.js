@@ -30,6 +30,11 @@ const cartItemSchema = new mongoose.Schema({
         ref: "shoppingCart",
     }
 })
+
+cartItemSchema.statics.getCartItems = function (cartId) {
+    return this.find({ cartId });
+}
+
 const cartItemModel = mongoose.model("cartItem", cartItemSchema)
 
 module.exports = cartItemModel

@@ -1,8 +1,13 @@
-<div class="productCard">
+<div (mouseenter)="inputVisibility=!inputVisibility" (mouseleave)="inputVisibility=!inputVisibility" class="productCard">
     <p><b>{{product.title}}</b></p>
-    <img width="150px" src={{product.image}} />
-    <p>price : {{product.price}}</p>
+    <img width="150px" height="150px" src={{product.image}} />
+    <p>price : {{product.price}} ₪</p>
     <div style="position: relative; bottom: 0">
         <p>{{product.description}}</p>
+    </div>
+    <button (click)="getProduct(product)" class="btn btn-primary" type="button">Add to cart</button>
+
+    <div *ngIf="inputVisibility">
+     <input [formControl]="quantity"style="margin-top: 8px;" type="number">
     </div>
 </div>

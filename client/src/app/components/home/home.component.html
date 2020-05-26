@@ -3,12 +3,18 @@
         <h1>Home</h1>
     </div>
     <div>
+        <p>number of products available : {{products.length}}</p>
+    </div>
+    <div align="center">
+        <app-search></app-search>
+    </div>
+    <div>
         <app-shopping-cart></app-shopping-cart>
     </div>
     <div>
-        <app-category [products]="products"></app-category>
+        <app-category></app-category>
     </div>
     <div>
-        <app-products-list [products]="products"></app-products-list>
+        <app-products-list></app-products-list>
     </div>
 </div>

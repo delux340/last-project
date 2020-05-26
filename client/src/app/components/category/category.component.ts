@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductsStateService } from "../../services/products-state/products-state.service"
 import { ProductsServiceService } from "../../services/productsService/products-service.service"
 
 @Component({
@@ -6,15 +7,17 @@ import { ProductsServiceService } from "../../services/productsService/products-
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit, OnChanges {
-  @Input() products
+export class CategoryComponent implements OnInit {
   categories: Array<any>
-  constructor(public productsService: ProductsServiceService) { }
+  constructor(public productsService: ProductsServiceService, public productsStateService: ProductsStateService) { }
 
   ngOnInit() {
-    this.categories = this.productsService.handleProducts(this.products)
+    this.productsStateService.handleProducts()
+    this.productsStateService.categories$.subscribe((categories) => this.categories = categories)
   }
-  ngOnChanges() {
-    this.categories = this.productsService.handleProducts(this.products)
+
+  setCategory(category) {
+    this.productsStateService.setCategory(category)
   }
+
 }

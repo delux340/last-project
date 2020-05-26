@@ -11,7 +11,7 @@ interface CustomRoute extends Route {
 }
 
 export const routes: Array<CustomRoute> = [
-    { path: "", redirectTo: "signin", pathMatch: "full" },
+    { path: "", redirectTo: "home", pathMatch: "full" },
     { path: "signup", title: "Sign Up", isVisible: true, component: SignUpComponent },
     { path: "signin", title: "Sign In", isVisible: true, component: SignInComponent },
     { path: "home", title: "Home", isVisible: true, component: HomeComponent,canActivate:[TokenGaurdService] }

@@ -1,5 +1,6 @@
 <div>
     <div class="row">
-        <app-product-item *ngFor="let product of filterdArray" [product]="product"> </app-product-item>
+        <app-product-item *ngFor="let product of filterdArray | search:searchInput" [product]="product">
+        </app-product-item>
     </div>
 </div>

@@ -16,7 +16,7 @@ export class CustomInterceptorService implements HttpInterceptor {
       const token = localStorage.getItem("token") || ""
       return { setHeaders: { autorization: token } }
     }
-
+    
     return next.handle(newRequest).pipe(map(event => {
       if (event instanceof HttpResponse) {
         if (event.body.isError) localStorage.setItem("token", "")

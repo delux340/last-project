@@ -62,11 +62,11 @@ userSchema.statics.handleVerify = async function (user) {
 }
 
 userSchema.statics.handleUserLogin = async function (user) {
-    const { email, password, id } = user
-    const existingUser = await ifExists(email)
-    if (!existingUser.length) return loginFailed()
-    const { password: exPassword } = existingUser
-    return comparePasswords(password, exPassword, email, id)
+    const { email, password } = user
+    const [existingUser] = await ifExists(email)
+    if (!existingUser) return loginFailed()
+    const { password: exPassword, _id } = existingUser
+    return comparePasswords(password, exPassword, email, _id)
 }
 
 
@@ -105,8 +105,8 @@ async function loginFailed() {
     throw new Error()
 }
 async function comparePasswords(password, exPassword, email, id) {
-    const ifUserExists = bcrypt.compare(password, exPassword)
-    if (ifUserExists) {
+    const verifyPassword = bcrypt.compare(password, exPassword)
+    if (verifyPassword) {
         const token = loginSuccess(email, id)
         return token
     } else {
